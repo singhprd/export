@@ -21,7 +21,6 @@ class WelcomeController < ApplicationController
   end
 
   def list
-  	# render 'list'
   	@client = @@client
   end
 end

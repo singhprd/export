@@ -1,7 +1,29 @@
+<h1>Expenses:</h1>
 <% hash = JSON.parse( @client.fetch_protected_resource(:uri => 'https://api.freeagent.com/v2/expenses').body) %>
 
-<% url =  hash['expenses'].first['attachment']['content_src'] %>
-
+<table>
+<thead>
+	<tr>
+		<th></th>
+		<th></th>
+	</tr>
+</thead>
+<tbody>
+	
+</tbody>
+<% urls = [] %>
 <% hash['expenses'].each do |exp| %>
-	<a href= <%= exp['attachment']['content_src'] %> >123</a>
+	<tr>
+	<td><%= exp['description'] %></td>
+	<td><a href= <%= exp['attachment']['content_src'] %> >Download</a></td>
+	</tr>
+	<% urls << exp['attachment']['content_src'] %>
 <% end %>
+</table>
+
+
+<a href="" target="_blank" onclick="<% urls.each do |url| %>
+	window.open('<%= url %>');
+<% end %>">Download All</a>
+
+
