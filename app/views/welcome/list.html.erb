@@ -1,3 +1,7 @@
-<h1>List</h1>
+<% hash = JSON.parse( @client.fetch_protected_resource(:uri => 'https://api.freeagent.com/v2/expenses').body) %>
 
-<%= @client.fetch_protected_resource(:uri => 'https://api.freeagent.com/v2/company').body %>
+<% url =  hash['expenses'].first['attachment']['content_src'] %>
+
+<% hash['expenses'].each do |exp| %>
+	<a href= <%= exp['attachment']['content_src'] %> >123</a>
+<% end %>
